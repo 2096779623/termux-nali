@@ -45,7 +45,7 @@ jobs:
       - name: Get checksums
         id: get_checksums
         run: |
-          checksums=$(printf 'SHA-256:\n```\n%s\n```\n' "$(sha256sum *.zip)")
+          checksums=$(printf 'SHA-256:\n```\n%s\n```\n' "$(sha256sum *.deb)")
           checksums="${checksums//'%'/'%25'}"
           checksums="${checksums//$'\n'/'%0A'}"
           checksums="${checksums//$'\r'/'%0D'}"
