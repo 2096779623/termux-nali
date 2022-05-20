@@ -53,7 +53,7 @@ jobs:
       - name: Create new tag
         id: get_tag
         run: |
-          new_tag="nali-$(date "+%Y.%m.%d:%H%M")"
+          new_tag="nali-$(date "+%Y.%m.%d")"
           existing_tag_revision=$(git tag)
           if [ -n "$existing_tag_revision" ]; then
             tag_rev=$((existing_tag_revision + 1))
