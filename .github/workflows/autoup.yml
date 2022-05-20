@@ -45,10 +45,7 @@ jobs:
       - name: Get checksums
         id: get_checksums
         run: |
-          echo -e "SHA256: $(sha256sum build/nali_2018.08.01_all.deb)\n" > hash
-          echo -e "SHA512: $(sha512sum build/nali_2018.08.01_all.deb)\n" >> hash
-          echo -e "MD5: $(md5sum build/nali_2018.08.01_all.deb)" >> hash
-          checksums=$(cat hash)
+          checksums=$(sha256sum build/nali_2018.08.01_all.deb)
           echo "::set-output name=checksums::$checksums"
       - name: Create new tag
         id: get_tag
