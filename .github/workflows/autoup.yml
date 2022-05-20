@@ -45,10 +45,10 @@ jobs:
       - name: Get checksums
         id: get_checksums
         run: |
-          checksums=$(printf 'SHA-256:\n```\n%s\n```\n' "$(sha256sum *.deb)")
-          checksums=$(printf 'MD5:\n```\n%s\n```\n' "$(md5sum *.deb)")
-          checksums=$(printf 'SHA-512:\n```\n%s\n```\n' "$(sha512sum *.deb)")
-          echo "::set-output name=checksums::$checksums"
+          checksums1=$(printf 'SHA-256:$(sha256sum *.deb)\n")
+          checksums2=$(printf 'MD5:$(md5sum *.deb)\n")
+          checksums3=$(printf 'SHA-512:$(sha512sum *.deb)")
+          echo "::set-output name=checksums::$checksums1$checksums2$checksums3"
       - name: Create new tag
         id: get_tag
         run: |
