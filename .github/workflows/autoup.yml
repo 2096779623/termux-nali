@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
   
 jobs:
-  Build:
+  Auto-Update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,9 +46,8 @@ jobs:
         id: get_checksums
         run: |
           checksums=$(printf 'SHA-256:\n```\n%s\n```\n' "$(sha256sum *.deb)")
-          checksums="${checksums//'%'/'%25'}"
-          checksums="${checksums//$'\n'/'%0A'}"
-          checksums="${checksums//$'\r'/'%0D'}"
+          checksums=$(printf 'MD5:\n```\n%s\n```\n' "$(md5sum *.deb)")
+          checksums=$(printf 'SHA-512:\n```\n%s\n```\n' "$(sha512sum *.deb)")
           echo "::set-output name=checksums::$checksums"
       - name: Create new tag
         id: get_tag
