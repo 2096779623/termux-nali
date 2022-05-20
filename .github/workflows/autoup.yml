@@ -3,8 +3,6 @@ name: autoup
 on:
   push:
   label:
-      types: [created,edited]
-  pull_request:
   schedule:
     - cron: "0 9 * * 5-5"
     
