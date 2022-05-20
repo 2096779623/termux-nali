@@ -18,9 +18,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup termux-create-package
+      - name: Install Python
         uses: actions/setup-python@v3.1.0
-      - name: Install dependencies and scripts check
+      - name: Setup termux-create-package
         run: |
           python -m pip install --upgrade pip
           git clone https://github.com/termux/termux-create-package
@@ -30,9 +30,8 @@ jobs:
       - name: Update DataBase
         run: |
           wget -O share/QQWry.Dat https://github.com/out0fmemory/qqwry.dat/raw/master/qqwry_lastest.dat
-      - name: Build Package
+      - name: Make Deb
         run: |
-          mkdir -p debs
           termux-create-package manifest.json
       - name: Download Artifact
         uses: actions/download-artifact@v3.0.0
@@ -50,12 +49,11 @@ jobs:
           checksums2=$(sha256sum build/nali_2018.08.01_all.deb)
           checksums3=$(sha512sum build/nali_2018.08.01_all.deb)
           checksum=${checksums1}'\n'${checksums2}'\n'${checksums3}'\n'
-          echo -e $checksum > debs/hash
           echo "::set-output name=checksums::$checksums"
       - name: Create new tag
         id: get_tag
         run: |
-          new_tag="nali-$(date "+%Y.%m.%d")"
+          new_tag="nali-$(date "+%Y.%m.%d:%H%M")"
           existing_tag_revision=$(git tag)
           if [ -n "$existing_tag_revision" ]; then
             tag_rev=$((existing_tag_revision + 1))
@@ -67,11 +65,11 @@ jobs:
           git push --tags
           echo "::set-output name=tag_name::$new_tag"
       - name: Publish GitHub release
-        uses: svenstaro/upload-release-action@v2
+        uses: termux/upload-release-action@v3.0.3
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: |
-            build/*
+          file: "build/*"
           file_glob: true
           release_name: "IPDB Auto Update"
           tag: ${{ steps.get_tag.outputs.tag_name }}
+          body: ${{ steps.get_checksums.outputs.checksums }}
