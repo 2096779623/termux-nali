@@ -1,0 +1,66 @@
+  {
+    "control": {
+        "Package": "nali",
+        "Version": "2018.08.01",
+        "Architecture": "all",
+        "Maintainer": "2096779623",
+        "Depends": "root-repo, perl, wget, curl, dnsutils, iconv, mtr, tracepath",
+        "Homepage": "https://github.com/out0fmemory/nali",
+        "Description": [
+            "命令行查询ip对应物理地址"
+            ]
+    },
+
+    "installation_prefix": "/data/data/com.termux/files/usr",
+    "deb_dir": "build",
+    "control_files_dir": "control",
+    "maintainer_scripts_shebang": "#!/data/data/com.termux/files/usr/bin/bash",
+
+    "data_files": {
+        "bin/nali": {
+            "source": "bin/nali",
+            "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+        },
+        "bin/nali-cat": {
+          "source": "bin/nali-cat",
+          "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/nali-dig": {
+        "source": "bin/nali-dig",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/nali-mtr": {
+        "source": "bin/nali-mtr",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/nali-nslookup": {
+        "source": "bin/nali-nslookup",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/nali-ping": {
+        "source": "bin/nali-ping",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/nali-tracepath": {
+        "source": "bin/nali-tracepath",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/nali-traceroute": {
+        "source": "bin/nali-traceroute",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "bin/qqwrynali": {
+        "source": "bin/qqwrynali"
+      },
+      "bin/nali-update": {
+        "source": "bin/nali-update",
+        "set_shebang": "#!/data/data/com.termux/files/usr/bin/bash"
+      },
+      "share/QQWry.Dat": {
+        "source": "share/QQWry.Dat"
+      },
+      "share/nali.pl": {
+        "source": "share/nali.pl"
+      }
+    }
+}

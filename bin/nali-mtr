@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/data/data/com.termux/files/usr/bin/bash
 sudo mtr $@ 2>&1|nali

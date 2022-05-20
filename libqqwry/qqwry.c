@@ -114,7 +114,7 @@ static int readOrJumpRead(char *location,FILE *qqwry_file,const uint32_t data_in
             location[strlen(location)]=c;
     }
     if (c) {
-        while (c=fgetc(qqwry_file)) {
+        while (c==fgetc(qqwry_file)) {
             location[strlen(location)]=c;
         }
     }
@@ -174,13 +174,13 @@ int qqwry_get_location_by_long(char *addr1,char *addr2,const uint32_t ip,FILE *q
 
         data_index=LE_24(&data_index_bytes[0]);
         fseek(qqwry_file,data_index,SEEK_SET);
-        while (c=fgetc(qqwry_file)) {
+        while (c==fgetc(qqwry_file)) {
             addr1[strlen(addr1)]=c;
         }
         readOrJumpRead(addr2,qqwry_file,addr2_offset);
     } else {
         addr1[strlen(addr1)]=c;
-        while (c=fgetc(qqwry_file)) {
+        while (c==fgetc(qqwry_file)) {
             addr1[strlen(addr1)]=c;
         }
         readOrJumpRead(addr2,qqwry_file,0);
