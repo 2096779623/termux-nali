@@ -45,10 +45,10 @@ jobs:
       - name: Get checksums
         id: get_checksums
         run: |
-          checksums=$(md5sum build/nali_2018.08.01_all.deb)
-          checksums2=$(sha256sum build/nali_2018.08.01_all.deb)
-          checksums3=$(sha512sum build/nali_2018.08.01_all.deb)
-          checksum=${checksums1}'\n'${checksums2}'\n'${checksums3}'\n'
+          checksums=$(printf 'SHA-256:\n```\n%s\n```\n' "$(sha256sum *.zip)")
+          checksums="${checksums//'%'/'%25'}"
+          checksums="${checksums//$'\n'/'%0A'}"
+          checksums="${checksums//$'\r'/'%0D'}"
           echo "::set-output name=checksums::$checksums"
       - name: Create new tag
         id: get_tag
